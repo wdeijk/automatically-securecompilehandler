@@ -1,17 +1,10 @@
-function combinationSum(candidates, target) {
-  const result = [];
-  backtrack([], 0, 0);
-  return result;
-  function backtrack(combination, start, sum) {
-    if (sum === target) {
-      result.push([...combination]);
-      return;
-    }
-    if (sum > target) return;
-    for (let i = start; i < candidates.length; i++) {
-      combination.push(candidates[i]);
-      backtrack(combination, i, sum + candidates[i]);
-      combination.pop();
+function coinChange(coins, amount) {
+  const dp = new Array(amount + 1).fill(amount + 1);
+  dp[0] = 0;
+  for (const coin of coins) {
+    for (let i = coin; i <= amount; i++) {
+      dp[i] = Math.min(dp[i], dp[i - coin] + 1);
     }
   }
+  return dp[amount] > amount ? -1 : dp[amount];
 }
