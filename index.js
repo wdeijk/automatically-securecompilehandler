@@ -1,4 +1,2 @@
-function maxDepth(root) {
-  if (!root) return 0;
-  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
-}
+const deepFlatten = (arr) =>
+  [].concat(...arr.map((v) => (Array.isArray(v) ? deepFlatten(v) : v)));
